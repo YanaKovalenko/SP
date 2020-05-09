@@ -7,6 +7,7 @@ HANDLE semaphore;
 
 int random_int(int min, int max);
 DWORD WINAPI thread_function(LPVOID param);
+enum cases { first_param, second_param};
 
 int main()
 {
@@ -39,8 +40,8 @@ int main()
 	for (int i = 0; i < max_threads; i++)
 	{
 		int* params = new int[2];
-		params[0] = i; 
-		params[1] = random_int(1, 5); 
+		params[first_param] = i;
+		params[second_param] = random_int(1, 5);
 									 
 		threads[i] = CreateThread(NULL, 0, thread_function, (LPVOID)params, NULL, NULL);
 	}
@@ -53,7 +54,7 @@ DWORD WINAPI thread_function(LPVOID param)
 {
 	int* params = (int*)param;
 	clock_t start = clock();
-	int thread_number = params[0];
+	int thread_number = params[first_param];
 	LPSTR str = new CHAR[128];
 
 	DWORD result = WaitForSingleObject(semaphore, 500);
