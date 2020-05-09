@@ -8,10 +8,11 @@ int main()
 	for (;;)
 	{
 		PrintMenu();
+		enum cases { print_list_subkeys, print_list_keys, searches_registry, save_key, exit};
 		cin >> choice;
 		switch (choice)
 		{
-			case '1': 
+			case 'print_list_subkeys':
 			{
 				HKEY hKey = { 0 };
 				PHKEY phKey = &hKey;
@@ -20,7 +21,7 @@ int main()
 					PrintListSubkeysByKey(hKey);
 				}
 			}break;
-			case '2': 
+			case 'print_list_keys':
 			{
 				HKEY hKey = { 0 };
 				PHKEY phKey = &hKey;
@@ -29,7 +30,7 @@ int main()
 					PrintListParamsByKey(hKey);
 				}
 			} break;
-			case '3': 
+			case 'searches_registry':
 			{
 				HKEY hKey = { 0 };
 				PHKEY phKey = &hKey;
@@ -42,7 +43,7 @@ int main()
 					FindStringInReg(hKey, reqString, fullPath);
 				}
 			} break;
-			case '4':
+			case 'save_key':
 			{
 				HANDLE hToken;
 
@@ -60,7 +61,7 @@ int main()
 					}
 				}
 			} break;
-			case '5': 
+			case 'exit':
 			{
 				return 0;
 			} break;
